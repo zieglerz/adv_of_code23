@@ -192,4 +192,27 @@ public class AppTest {
         int sum = list.stream().mapToInt(Integer::intValue).sum();
         assertEquals(sum, 54388);
     }
+
+    @Test
+    @Order(15)
+    public void testPartTwoSolveUsingInitialIdeaShort() {
+        long startTime = System.currentTimeMillis();
+        List<Integer> result = App.partTwoSolveUsingInitialIdea("res" + java.io.File.separator + "part_two_short_input.txt");
+        long endTime = System.currentTimeMillis();
+        logger.log(Level.INFO, "solveUsingInitialIdea runtime: " + (endTime - startTime) + "ms");
+        assertEquals(List.of(29, 83, 13, 24, 42, 14, 76), result);
+        int sum = result.stream().mapToInt(Integer::intValue).sum();
+        assertEquals(sum, 281);
+    }
+
+    @Test
+    @Order(16)
+    public void testPartTwoSolveUsingStreamAPIShort() {
+        long startTime = System.currentTimeMillis();
+        List<Integer> result = App.partTwoSolveUsingStreamAPI("res" + java.io.File.separator + "part_two_long_input.txt");
+        long endTime = System.currentTimeMillis();
+        logger.log(Level.INFO, "solveUsingStreamAPI runtime: " + (endTime - startTime) + "ms");
+        int sum = result.stream().mapToInt(Integer::intValue).sum();
+        assertEquals(sum, 53515);
+    }
 }

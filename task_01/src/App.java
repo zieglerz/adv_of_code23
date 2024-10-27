@@ -13,10 +13,19 @@ public class App {
     public static void main(String[] args) throws Exception {
         String input = "res" + java.io.File.separator + "long_input.txt";
 
-        //int sum = partOneSolveUsingInitialIdea(input).stream().mapToInt(Integer::intValue).sum();
-        int sum = partOneSolveUsingStreamAPI(input).stream().mapToInt(Integer::intValue).sum();
+        int sum;
+        // PART ONE
+        // sum = partOneSolveUsingInitialIdea(input).stream().mapToInt(Integer::intValue).sum();
+        sum = partOneSolveUsingStreamAPI(input).stream().mapToInt(Integer::intValue).sum();
         System.out.println("Part One: " + sum);
+
+        // PART TWO
+        // sum = partTwoSolveUsingInitialIdea(input).stream().mapToInt(Integer::intValue).sum();
+        sum = partTwoSolveUsingStreamAPI(input).stream().mapToInt(Integer::intValue).sum();
+        System.out.println("Part Two: " + sum);
     }
+
+    /* === PART ONE === */
 
     public static List<Integer> partOneSolveUsingInitialIdea(String input){
         List<Integer> values = new ArrayList<>();
@@ -46,7 +55,7 @@ public class App {
                     }
                 }
                 if(!firstDigitFound || !secondDigitFound){
-                    throw new IllegalArgumentException("No digit found in the line" + line);
+                    throw new IllegalArgumentException("No digit found in the line " + line);
                 }
             }
         } catch(IOException e){
@@ -64,13 +73,13 @@ public class App {
                         .mapToObj(c -> (char) c)
                         .filter(Character::isDigit)
                         .findFirst()
-                        .orElseThrow(() -> new IllegalArgumentException("No digit found in the line"+line));
+                        .orElseThrow(() -> new IllegalArgumentException("No digit found in the line " + line));
 
                     char secondDigit = new StringBuilder(line).reverse().chars()
                         .mapToObj(c -> (char) c)
                         .filter(Character::isDigit)
                         .findFirst()
-                        .orElseThrow(() -> new IllegalArgumentException("No digit found in the line" + line));
+                        .orElseThrow(() -> new IllegalArgumentException("No digit found in the line " + line));
                         
                     return Integer.parseInt(firstDigit + "" + secondDigit);
                 })
@@ -81,6 +90,98 @@ public class App {
         return values;
     }
 
+    /* === PART TWO === */
+
+    public static List<Integer> partTwoSolveUsingInitialIdea(String input){
+        List<Integer> values = new ArrayList<>();
+        try{
+            List<String> lines = Files.lines(Paths.get(input)).collect(Collectors.toList());
+            for(String line : lines){
+                line = handleNumberNames(line);
+                boolean firstDigitFound = false;
+                boolean secondDigitFound = false;
+                char firstDigit = 0;
+                char secondDigit = 0;
+                for(int i = 0; i < line.length(); i++){
+                    if(!firstDigitFound){
+                        if(Character.isDigit(line.charAt(i))){
+                            firstDigit = line.charAt(i);
+                            firstDigitFound = true;
+                        }
+                    }
+                    if(!secondDigitFound){
+                        if(Character.isDigit(line.charAt(line.length() - 1 - i))){
+                            secondDigit = line.charAt(line.length() - 1 - i);
+                            secondDigitFound = true;
+                        }
+                    }
+                    if(firstDigitFound && secondDigitFound){
+                        values.add(Integer.parseInt(firstDigit + "" + secondDigit));
+                        break;
+                    }
+                }
+                if(!firstDigitFound || !secondDigitFound){
+                    throw new IllegalArgumentException("No number found in the line " + line);
+                }
+            }
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+        return values;         
+    }
+
+    public static List<Integer> partTwoSolveUsingStreamAPI(String input) {
+        List<Integer> values = new ArrayList<>();
+        try{
+            values = Files.lines(Paths.get(input))
+                .map(line -> {
+                    String curedLine = handleNumberNames(line);
+                    char firstDigit = curedLine.chars()
+                        .mapToObj(c -> (char) c)
+                        .filter(Character::isDigit)
+                        .findFirst()
+                        .orElseThrow(() -> new IllegalArgumentException("No digit found in the line " + line));
+
+                    char secondDigit = new StringBuilder(curedLine).reverse().chars()
+                        .mapToObj(c -> (char) c)
+                        .filter(Character::isDigit)
+                        .findFirst()
+                        .orElseThrow(() -> new IllegalArgumentException("No digit found in the line " + line));
+                        
+                    return Integer.parseInt(firstDigit + "" + secondDigit);
+                })
+                .collect(Collectors.toList());
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+        return values;
+    }
+
+    private static String handleNumberNames(String inputString){
+        return inputString.replaceAll("one", "o1e")
+                          .replaceAll("two", "t2o")
+                          .replaceAll("three", "t3ree")
+                          .replaceAll("four", "f4ur")
+                          .replaceAll("five", "f5ve")   
+                          .replaceAll("six", "s6x")
+                          .replaceAll("seven", "s7ven")
+                          .replaceAll("eight", "e8ght")
+                          .replaceAll("nine", "n9ne");
+
+     // 326sevenfivenseven1kctgmnqtwonefq -> if I would replace "two" with 2 I would lose the "one" => wrong result
+    }
+
+
+
+
+
+
+
+
+
+    /* === REST OF PART ONE === */
+    /* Done for learning // testing purposes */
+
     public static List<Integer> partOneSolveUsingStringAPIWithoutSB(String input) {
         List<Integer> values = new ArrayList<>();
         try{
@@ -90,13 +191,13 @@ public class App {
                         .mapToObj(c -> (char) c)
                         .filter(Character::isDigit)
                         .findFirst()
-                        .orElseThrow(() -> new IllegalArgumentException("No digit found in the line"+line));
+                        .orElseThrow(() -> new IllegalArgumentException("No digit found in the line "+line));
 
                     char secondDigit = line.chars()
                         .mapToObj(c -> (char) c)
                         .filter(Character::isDigit)
                         .reduce((first, second) -> second)
-                        .orElseThrow(() -> new IllegalArgumentException("No digit found in the line" + line));
+                        .orElseThrow(() -> new IllegalArgumentException("No digit found in the line " + line));
                         
                     return Integer.parseInt(firstDigit + "" + secondDigit);
                 })
@@ -118,7 +219,7 @@ public class App {
                         .collect(Collectors.toList());
 
                     if (digitsList.size() < 1) {
-                        throw new IllegalArgumentException("Not enough digits in the line" + line);
+                        throw new IllegalArgumentException("Not enough digits in the line " + line);
                     }
 
                     return Integer.parseInt(digitsList.get(0) + "" + digitsList.get(digitsList.size() - 1));
@@ -156,7 +257,7 @@ public class App {
             .map(line -> {
                 Matcher matcher = pattern.matcher(line);
                 if (!matcher.find()) {
-                    throw new IllegalArgumentException("No digit found in the line" + line);
+                    throw new IllegalArgumentException("No digit found in the line " + line);
                 }
                 char firstDigit = matcher.group().charAt(0);
 
@@ -185,13 +286,13 @@ public class App {
                         .mapToObj(c -> (char) c)
                         .filter(Character::isDigit)
                         .findFirst()
-                        .orElseThrow(() -> new IllegalArgumentException("No digit found in the line" + line));
+                        .orElseThrow(() -> new IllegalArgumentException("No digit found in the line " + line));
 
                     char secondDigit = line.chars()
                         .mapToObj(c -> (char) c)
                         .filter(Character::isDigit)
                         .reduce((first, second) -> second)
-                        .orElseThrow(() -> new IllegalArgumentException("No digit found in the line" + line));
+                        .orElseThrow(() -> new IllegalArgumentException("No digit found in the line " + line));
 
                     values.add(Integer.parseInt(firstDigit + "" + secondDigit));
                 });
