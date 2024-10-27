@@ -33,9 +33,9 @@ public class AppTest {
 
     @Test
     @Order(1)
-    public void testSolveUsingInitialIdeaShort() {
+    public void testPartOneSolveUsingInitialIdeaShort() {
         long startTime = System.currentTimeMillis();
-        List<Integer> result = App.solveUsingInitialIdea("res" + java.io.File.separator + "short_input.txt");
+        List<Integer> result = App.partOneSolveUsingInitialIdea("res" + java.io.File.separator + "short_input.txt");
         long endTime = System.currentTimeMillis();
         logger.log(Level.INFO, "solveUsingInitialIdea runtime: " + (endTime - startTime) + "ms");
         assertEquals(List.of(12, 38, 15, 77), result);
@@ -45,9 +45,9 @@ public class AppTest {
 
     @Test
     @Order(2)
-    public void testSolveUsingStreamAPIShort() {
+    public void testPartOneSolveUsingStreamAPIShort() {
         long startTime = System.currentTimeMillis();
-        List<Integer> result = App.solveUsingStreamAPI("res" + java.io.File.separator + "short_input.txt");
+        List<Integer> result = App.partOneSolveUsingStreamAPI("res" + java.io.File.separator + "short_input.txt");
         long endTime = System.currentTimeMillis();
         logger.log(Level.INFO, "solveUsingStreamAPI runtime: " + (endTime - startTime) + "ms");
         assertEquals(List.of(12, 38, 15, 77), result);
@@ -57,9 +57,9 @@ public class AppTest {
 
     @Test
     @Order(3)
-    public void testSolveUsingStringAPIWithoutSBShort() {
+    public void testPartOneSolveUsingStringAPIWithoutSBShort() {
         long startTime = System.currentTimeMillis();
-        List<Integer> result = App.solveUsingStringAPIWithoutSB("res" + java.io.File.separator + "short_input.txt");
+        List<Integer> result = App.partOneSolveUsingStringAPIWithoutSB("res" + java.io.File.separator + "short_input.txt");
         long endTime = System.currentTimeMillis();
         logger.log(Level.INFO, "solveUsingStringAPIWithoutSB runtime: " + (endTime - startTime) + "ms");
         assertEquals(List.of(12, 38, 15, 77), result);
@@ -69,9 +69,9 @@ public class AppTest {
 
     @Test
     @Order(4)
-    public void testSolveUsingStreamAPIReducedShort() {
+    public void testPartOneSolveUsingStreamAPIReducedShort() {
         long startTime = System.currentTimeMillis();
-        List<Integer> result = App.solveUsingStreamAPIReduced("res" + java.io.File.separator + "short_input.txt");
+        List<Integer> result = App.partOneSolveUsingStreamAPIReduced("res" + java.io.File.separator + "short_input.txt");
         long endTime = System.currentTimeMillis();
         logger.log(Level.INFO, "solveUsingStreamAPIReduced runtime: " + (endTime - startTime) + "ms");
         assertEquals(List.of(12, 38, 15, 77), result);
@@ -81,9 +81,9 @@ public class AppTest {
 
     @Test
     @Order(5)
-    public void testSolveUsingRegexShort() {
+    public void testPartOneSolveUsingRegexShort() {
         long startTime = System.currentTimeMillis();
-        List<Integer> result = App.solveUsingRegex("res" + java.io.File.separator + "short_input.txt");
+        List<Integer> result = App.partOneSolveUsingRegex("res" + java.io.File.separator + "short_input.txt");
         long endTime = System.currentTimeMillis();
         logger.log(Level.INFO, "solveUsingRegex runtime: " + (endTime - startTime) + "ms");
         assertEquals(List.of(12, 38, 15, 77), result);
@@ -93,9 +93,9 @@ public class AppTest {
 
     @Test
     @Order(6)
-    public void testSolveUsingRegex2Short() {
+    public void testPartOneSolveUsingRegex2Short() {
         long startTime = System.currentTimeMillis();
-        List<Integer> result = App.solveUsingRegex2("res" + java.io.File.separator + "short_input.txt");
+        List<Integer> result = App.partOneSolveUsingRegex2("res" + java.io.File.separator + "short_input.txt");
         long endTime = System.currentTimeMillis();
         logger.log(Level.INFO, "solveUsingRegex2 runtime: " + (endTime - startTime) + "ms");
         assertEquals(List.of(12, 38, 15, 77), result);
@@ -105,9 +105,9 @@ public class AppTest {
 
     @Test
     @Order(7)
-    public void testSolveUsingParallelismShort() {
+    public void testPartOneSolveUsingParallelismShort() {
         long startTime = System.currentTimeMillis();
-        List<Integer> result = App.solveUsingParallelism("res" + java.io.File.separator + "short_input.txt");
+        List<Integer> result = App.partOneSolveUsingParallelism("res" + java.io.File.separator + "short_input.txt");
         long endTime = System.currentTimeMillis();
         logger.log(Level.INFO, "solveUsingParallelism runtime: " + (endTime - startTime) + "ms");
         result.sort(Integer::compareTo);
@@ -118,9 +118,9 @@ public class AppTest {
     
     @Test
     @Order(8)
-    public void testSolveUsingInitialIdeaLong() {
+    public void testPartOneSolveUsingInitialIdeaLong() {
         long startTime = System.currentTimeMillis();
-        List<Integer> list = App.solveUsingInitialIdea("res" + java.io.File.separator + "long_input.txt");
+        List<Integer> list = App.partOneSolveUsingInitialIdea("res" + java.io.File.separator + "long_input.txt");
         long endTime = System.currentTimeMillis();
         logger.log(Level.INFO, "solveUsingInitialIdea runtime: " + (endTime - startTime) + "ms");
         int sum = list.stream().mapToInt(Integer::intValue).sum();
@@ -129,9 +129,9 @@ public class AppTest {
 
     @Test
     @Order(9)
-    public void testSolveUsingStreamAPILong() {
+    public void testPartOneSolveUsingStreamAPILong() {
         long startTime = System.currentTimeMillis();
-        List<Integer> list = App.solveUsingStreamAPI("res" + java.io.File.separator + "long_input.txt");
+        List<Integer> list = App.partOneSolveUsingStreamAPI("res" + java.io.File.separator + "long_input.txt");
         long endTime = System.currentTimeMillis();
         logger.log(Level.INFO, "solveUsingStreamAPI runtime: " + (endTime - startTime) + "ms");
         int sum = list.stream().mapToInt(Integer::intValue).sum();
@@ -140,9 +140,9 @@ public class AppTest {
 
     @Test
     @Order(10)
-    public void testSolveUsingStringAPIWithoutSBLong() {
+    public void testPartOneSolveUsingStringAPIWithoutSBLong() {
         long startTime = System.currentTimeMillis();
-        List<Integer> list = App.solveUsingStringAPIWithoutSB("res" + java.io.File.separator + "long_input.txt");
+        List<Integer> list = App.partOneSolveUsingStringAPIWithoutSB("res" + java.io.File.separator + "long_input.txt");
         long endTime = System.currentTimeMillis();
         logger.log(Level.INFO, "solveUsingStringAPIWithoutSB runtime: " + (endTime - startTime) + "ms");
         int sum = list.stream().mapToInt(Integer::intValue).sum();
@@ -151,9 +151,9 @@ public class AppTest {
 
     @Test
     @Order(11)
-    public void testSolveUsingStreamAPIReducedLong() {
+    public void testPartOneSolveUsingStreamAPIReducedLong() {
         long startTime = System.currentTimeMillis();
-        List<Integer> list = App.solveUsingStreamAPIReduced("res" + java.io.File.separator + "long_input.txt");
+        List<Integer> list = App.partOneSolveUsingStreamAPIReduced("res" + java.io.File.separator + "long_input.txt");
         long endTime = System.currentTimeMillis();
         logger.log(Level.INFO, "solveUsingStreamAPIReduced runtime: " + (endTime - startTime) + "ms");
         int sum = list.stream().mapToInt(Integer::intValue).sum();
@@ -162,9 +162,9 @@ public class AppTest {
 
     @Test
     @Order(12)
-    public void testSolveUsingRegexLong() {
+    public void testPartOneSolveUsingRegexLong() {
         long startTime = System.currentTimeMillis();
-        List<Integer> list = App.solveUsingRegex("res" + java.io.File.separator + "long_input.txt");
+        List<Integer> list = App.partOneSolveUsingRegex("res" + java.io.File.separator + "long_input.txt");
         long endTime = System.currentTimeMillis();
         logger.log(Level.INFO, "solveUsingRegex runtime: " + (endTime - startTime) + "ms");
         int sum = list.stream().mapToInt(Integer::intValue).sum();
@@ -173,9 +173,9 @@ public class AppTest {
 
     @Test
     @Order(13)
-    public void testSolveUsingRegex2Long() {
+    public void testPartOneSolveUsingRegex2Long() {
         long startTime = System.currentTimeMillis();
-        List<Integer> list = App.solveUsingRegex2("res" + java.io.File.separator + "long_input.txt");
+        List<Integer> list = App.partOneSolveUsingRegex2("res" + java.io.File.separator + "long_input.txt");
         long endTime = System.currentTimeMillis();
         logger.log(Level.INFO, "solveUsingRegex2 runtime: " + (endTime - startTime) + "ms");
         int sum = list.stream().mapToInt(Integer::intValue).sum();
@@ -184,12 +184,35 @@ public class AppTest {
 
     @Test
     @Order(14)
-    public void testSolveUsingParallelismLong() {
+    public void testPartOneSolveUsingParallelismLong() {
         long startTime = System.currentTimeMillis();
-        List<Integer> list = App.solveUsingParallelism("res" + java.io.File.separator + "long_input.txt");
+        List<Integer> list = App.partOneSolveUsingParallelism("res" + java.io.File.separator + "long_input.txt");
         long endTime = System.currentTimeMillis();
         logger.log(Level.INFO, "solveUsingParallelism runtime: " + (endTime - startTime) + "ms");
         int sum = list.stream().mapToInt(Integer::intValue).sum();
         assertEquals(sum, 54388);
+    }
+
+    @Test
+    @Order(15)
+    public void testPartTwoSolveUsingInitialIdeaShort() {
+        long startTime = System.currentTimeMillis();
+        List<Integer> result = App.partTwoSolveUsingInitialIdea("res" + java.io.File.separator + "part_two_short_input.txt");
+        long endTime = System.currentTimeMillis();
+        logger.log(Level.INFO, "solveUsingInitialIdea runtime: " + (endTime - startTime) + "ms");
+        assertEquals(List.of(29, 83, 13, 24, 42, 14, 76), result);
+        int sum = result.stream().mapToInt(Integer::intValue).sum();
+        assertEquals(sum, 281);
+    }
+
+    @Test
+    @Order(16)
+    public void testPartTwoSolveUsingStreamAPIShort() {
+        long startTime = System.currentTimeMillis();
+        List<Integer> result = App.partTwoSolveUsingStreamAPI("res" + java.io.File.separator + "part_two_long_input.txt");
+        long endTime = System.currentTimeMillis();
+        logger.log(Level.INFO, "solveUsingStreamAPI runtime: " + (endTime - startTime) + "ms");
+        int sum = result.stream().mapToInt(Integer::intValue).sum();
+        assertEquals(sum, 53515);
     }
 }
