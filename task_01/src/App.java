@@ -13,12 +13,12 @@ public class App {
     public static void main(String[] args) throws Exception {
         String input = "res" + java.io.File.separator + "long_input.txt";
 
-        //int sum = solveUsingInitialIdea(input).stream().mapToInt(Integer::intValue).sum();
-        int sum = solveUsingStreamAPI(input).stream().mapToInt(Integer::intValue).sum();
-        System.out.println("Sum: " + sum);
+        //int sum = partOneSolveUsingInitialIdea(input).stream().mapToInt(Integer::intValue).sum();
+        int sum = partOneSolveUsingStreamAPI(input).stream().mapToInt(Integer::intValue).sum();
+        System.out.println("Part One: " + sum);
     }
 
-    public static List<Integer> solveUsingInitialIdea(String input){
+    public static List<Integer> partOneSolveUsingInitialIdea(String input){
         List<Integer> values = new ArrayList<>();
         try{
             List<String> lines = Files.lines(Paths.get(input)).collect(Collectors.toList());
@@ -55,7 +55,7 @@ public class App {
         return values;         
     }
 
-    public static List<Integer> solveUsingStreamAPI(String input) {
+    public static List<Integer> partOneSolveUsingStreamAPI(String input) {
         List<Integer> values = new ArrayList<>();
         try{
             values = Files.lines(Paths.get(input))
@@ -81,7 +81,7 @@ public class App {
         return values;
     }
 
-    public static List<Integer> solveUsingStringAPIWithoutSB(String input) {
+    public static List<Integer> partOneSolveUsingStringAPIWithoutSB(String input) {
         List<Integer> values = new ArrayList<>();
         try{
             values = Files.lines(Paths.get(input))
@@ -107,7 +107,7 @@ public class App {
         return values;
     }
 
-    public static List<Integer> solveUsingStreamAPIReduced(String input) {
+    public static List<Integer> partOneSolveUsingStreamAPIReduced(String input) {
         List<Integer> values = new ArrayList<>();
         try {
             values = Files.lines(Paths.get(input))
@@ -130,7 +130,7 @@ public class App {
         return values;
     }
 
-    public static List<Integer> solveUsingRegex(String input) {
+    public static List<Integer> partOneSolveUsingRegex(String input) {
         List<Integer> values = new ArrayList<>();
         try {
             values = Files.lines(Paths.get(input))
@@ -147,7 +147,7 @@ public class App {
         return values;
     }
 
-    public static List<Integer> solveUsingRegex2(String input){
+    public static List<Integer> partOneSolveUsingRegex2(String input){
         List<Integer> values = new ArrayList<>();
         Pattern pattern = Pattern.compile("\\d");
 
@@ -175,7 +175,7 @@ public class App {
         return values;
     }
 
-    public static List<Integer> solveUsingParallelism(String input){
+    public static List<Integer> partOneSolveUsingParallelism(String input){
         CopyOnWriteArrayList<Integer> values = new CopyOnWriteArrayList<>();
         try {
             Files.lines(Paths.get(input))
